@@ -55,5 +55,29 @@ pipeline{
                 }
             }
         }
+
+        stage('Delete Docker images'){
+
+            steps{
+                script{
+
+                    sh 'docker rmi ${IMAGE_NAME}:${IMAGE_TAG}'
+                    sh 'docker rmi ${IMAGE_NAME}:latest'
+                }
+            }
+        }
+
+        stage('Updating k8s deployment file'){
+            steps{
+                script{
+                    //Setting empty string as on OSX extension requires to be explicitly specified
+                    sh """
+                    cat deployment.yml
+                    sed -i '' 's/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g' deployment.yml
+                    cat deployment.yml
+                    """
+                }
+            }
+        }
     }
 }
