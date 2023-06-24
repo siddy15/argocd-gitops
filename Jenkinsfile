@@ -79,5 +79,23 @@ pipeline{
                 }
             }
         }
+
+          stage('Push the changed deployment file to github'){
+            steps{
+                script{
+                    sh """
+                        git config --global user.name “siddy15”
+                        git config --global user.email “siddhartha.khare15@gmail.com”
+                        git add deployment.yml
+                        git commit -m “Pushing the updated deployment file”
+                    """
+                    withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
+                    
+                    sh "git push https://github.com/siddy15/gitops_argocd.git worker"
+                    }
+
+                }
+            }
+        }
     }
 }
