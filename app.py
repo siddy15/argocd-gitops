@@ -1,6 +1,6 @@
 import socket
 from uuid import getnode as get_mac
-from flask import Flask,jsonify
+from flask import Flask,jsonify,render_template
 
 # Get device details
 def get_device_details():
@@ -15,11 +15,15 @@ def get_device_details():
 	
 app = Flask(__name__)
 
+@app.route("/")
+def hello():
+     return render_template('index.html')
+
 # Returns device hostname,IP and MAC address
 @app.route("/details")
 def details():
     hostname,ip,mac = get_device_details()
-    out = "Hello!!!....I'm " + hostname + "....My MAC ID is " + mac + "....and My IP address is "+ip
+    out = "Hola Phil I'm " + hostname + " and my MAC ID is " + mac + " & my IP address is "+ip
     return out
 
 @app.route("/health")
@@ -28,10 +32,10 @@ def health():
         status="up"
     )
 
-@app.route("/")
+@app.route("/home")
 def home():
-    return "Hola! GitOps_ArgoCD_Project"
+    return "Hola Pappi! This is your first gitops argocd project."
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int("5000"), debug=True)
+    app.run(host='0.0.0.0', port=5000)
 	
