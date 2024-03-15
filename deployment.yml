@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: flask-application-contianer
-        image: siddy15/gitops-argocd-app:42
+        image: siddy15/gitops-argocd-app:44
         resources:
           limits:
             memory: "128Mi"
