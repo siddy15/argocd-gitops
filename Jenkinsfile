@@ -50,7 +50,7 @@ pipeline{
                     echo 'Login Success'
                     // sh ‘docker tag $BUILD_NUMBER’ + ' ' + ‘$DOCKERHUB_USERNAME/$BUILD_NUMBER’
                     // sh ‘docker rmi $BUILD_NUMBER’
-                    // sh 'docker push $DOCKERHUB_USERNAME/$APP_NAME'
+                    sh 'docker push $DOCKERHUB_USERNAME/$APP_NAME'
                     sh 'docker push $DOCKERHUB_USERNAME/$APP_NAME:$IMAGE_TAG'
                 }
             }

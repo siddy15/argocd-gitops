@@ -34,7 +34,7 @@ def health():
 
 @app.route("/home")
 def home():
-    return "Hola Pappi! This is your first gitops argocd project."
+    return "Hola Pappi! Welcome to Conf42 Cloud Native."
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
